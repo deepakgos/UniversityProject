@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Data Analysis Document</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <div class="main">
+        <div class="navbar">
+            <div class="icon">
+                <h2 class="logo">DataMind</h2>
+            </div>
+
+            <div class="menu">
+                <ul class="ulheader">
+                    <li class="liheader"><a class="aheader" href="{{ url_for('home') }}">HOME</a></li>
+                    <li class="liheader"><a class="aheader" href="{{ url_for('service_page') }}">SERVICES</a></li>
+                    <li class="liheader"><a class="aheader" href="{{ url_for('analysis_page') }}">ANALYSIS</a></li>
+                    <li class="liheader"><a class="aheader" href="{{ url_for('about_page') }}">ABOUT</a></li>
+                    <li class="liheader"><a class="aheader" href="{{ url_for('contact_page') }}">CONTACT</a></li>
+                </ul>
+            </div>
+
+            <!-- <div class="gotoadmin">
+                <input class="srch" name="" placeholder="Type to search">
+                <a href="{{ url_for('admin_login') }}"><button class="btn">Admin Login</button></a>
+            </div> -->
+        </div>
+
+
+
+        <div class="admin-login">
+            <!-- <h2>Admin Login</h2> -->
+            <form action="{{ url_for('admin_login') }}" method="POST">
+                <div class="form">
+                    <h2>Login Here</h2>
+                    <input type="email" id="emailField" name="email" placeholder="Enter Email Here" autocomplete="off">
+                    <input type="password" id="passwordField" name="password" placeholder="Enter password Here" autocomplete="off">
+                    <button class="btnlogin"><a href="#">Login</a></button>
+    
+                    <p class="link">Don't have an account<br>
+                        <a href="#">Sign Up </a>Here
+                    </p>
+                </div>
+            </form>
+        </div>
+    
+    
+        <script>
+            window.onload = function() {
+                document.getElementById('emailField').value = '';
+                document.getElementById('passwordField').value = '';
+            };
+        </script>
+
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+
+    
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>About Us</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+  <div class="main">
+    <div class="navbar">
+      <div class="icon">
+        <h2 class="logo">DataMind</h2>
+      </div>
+
+      <div class="menu">
+        <ul class="ulheader">
+          <li class="liheader"><a class="aheader" href="{{ url_for('home') }}">HOME</a></li>
+          <li class="liheader"><a class="aheader" href="{{ url_for('service_page') }}">SERVICES</a></li>
+          <li class="liheader"><a class="aheader" href="{{ url_for('analysis_page') }}">ANALYSIS</a></li>
+          <li class="liheader"><a class="aheader" href="{{ url_for('about_page') }}">ABOUT</a></li>
+          <li class="liheader"><a class="aheader" href="{{ url_for('contact_page') }}">CONTACT</a></li>
+        </ul>
+      </div>
+
+      <div class="gotoadmin">
+        <a href="{{ url_for('admin_login_page') }}"><button class="btn">Admin Login</button></a>
+      </div>
+    </div>
+
+    <div class="aboutpage-container">
+      <div class="about-us-main">
+        <div class="about-us-img"><img src="/static/about_us.jpg" width="750px" height="1000px"></div>
+        <div class="about-us-content">
+          <h2>About Datamind</h2>
+          <p>
+            At DataMind, we are passionate about unlocking the power of data to drive innovation and empower
+            organizations with actionable insights. As a leading data analysis company, we specialize in providing
+            cutting-edge data solutions tailored to meet the unique challenges and objectives of businesses and
+            organizations across various industries.
+            Our team of skilled data scientists, analysts, and engineers is committed to delivering top-notch
+            data-driven strategies that enable our clients to stay ahead in today's dynamic business landscape. By
+            leveraging advanced analytics, machine learning, and artificial intelligence, we help businesses harness the
+            full potential of their data to make informed decisions and achieve sustainable growth.
+          </p>
+
+          <h2>Our Mission</h2>
+
+          <p>Our mission at DataMind is to be a trusted partner for our clients on their data journey. We strive to
+            transform raw data into meaningful information, guiding organizations towards data-driven decision-making
+            that fuels progress and innovation.</p>
+
+          <h2>Why Choose DataMind?</h2>
+          <p>
+            <h3>Expertise:</h3> <p style="margin: .5rem 0 .5rem 0;">Our team comprises highly skilled professionals with extensive experience in the field of data
+            analysis. We have a proven track record of delivering successful data solutions for businesses of all sizes.</p>
+
+            <h3>Tailored Solutions:</h3> <p style="margin: .5rem 0 .5rem 0;">We understand that each organization has unique data needs. Hence, we customize our
+            solutions to align perfectly with your business goals and challenges.</p>
+
+            <h3>Cutting-Edge Technology:</h3> <p style="margin: .5rem 0 .5rem 0;">Staying at the forefront of technology is our priority. We leverage the latest
+            tools and techniques to ensure that our clients benefit from the most advanced data analysis capabilities.</p>
+
+            <h3>Data Privacy & Security:</h3> <p style="margin: .5rem 0 .5rem 0;">Data privacy and security are of utmost importance to us. We strictly adhere to
+            industry best practices to safeguard your sensitive information.</p>
+
+            <h3>End-to-End Support:</h3> <p style="margin: .5rem 0 .5rem 0;">From data collection and preparation to analysis and visualization, we offer
+            comprehensive support at every stage of your data journey.</p>
+          </p>
+
+          <!-- <h2>Our Services</h2>
+          <p>
+          <h3>Data Analytics:</h3> Uncover hidden patterns and trends in your data to make informed decisions and gain a
+          competitive edge.
+
+          <h3>Predictive Modeling:</h3> Utilize advanced statistical techniques to forecast future outcomes and trends.
+
+          <h3>Machine Learning:</h3> Implement machine learning algorithms to enable automated decision-making and
+          process optimization.
+
+          <h3>Data Visualization:</h3> Transform complex data into intuitive visualizations for easy understanding and
+          insights.
+
+          <h3>Business Intelligence:</h3> Empower your team with real-time data access and interactive dashboards.
+          </p> -->
+
+          <!-- <h2>Contact Us</h2>
+          <p>
+            Are you ready to harness the power of data for your organization's success? Get in touch with us today to
+            explore how DataMind can transform your data into a valuable asset that drives growth and innovation.
+
+            <br>Contact Information:
+
+            <br>Address: [Your Address]
+            <br>Phone: [Your Contact Number]
+            <br>Email: [Your Email Address]
+            <br>Website: [Your Website URL]
+          </p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
