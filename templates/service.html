@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Our Services</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <div class="main">
+        <div class="navbar">
+            <div class="icon">
+                <h2 class="logo">DataMind</h2>
+            </div>
+
+            <div class="menu">
+                <ul class="ulheader">
+                    <li class="liheader"><a class="aheader" href="{{ url_for('home') }}">HOME</a></li>
+                    <li class="liheader"><a class="aheader" href="{{ url_for('service_page') }}">SERVICES</a></li>
+                    <li class="liheader"><a class="aheader" href="{{ url_for('analysis_page') }}">ANALYSIS</a></li>
+                    <li class="liheader"><a class="aheader" href="{{ url_for('about_page') }}">ABOUT</a></li>
+                    <li class="liheader"><a class="aheader" href="{{ url_for('contact_page') }}">CONTACT</a></li>
+                </ul>
+            </div>
+
+            <div class="gotoadmin">
+                <a href="{{ url_for('admin_login_page') }}"><button class="btn">Admin Login</button></a>
+            </div>
+        </div>
+
+        <div class="servicepage-container">
+            <!-- <h1>Our Services</h1>
+            <div class="what-we-do-above">
+                <h2 style="color: #ff7200; padding: 20px;">WHAT WE DO</h2>
+            </div> -->
+
+            <div class="what-we-do">
+                <div class="subdivision">
+                    <h3>Data Collection and Cleaning</h3>
+                    <p>We gather raw data from various sources and perform data cleaning to ensure accuracy and
+                        consistency.</p>
+                </div>
+
+                <div class="subdivision">
+                    <h3>Data Analysis and Visualization</h3>
+                    <p>Our team analyzes the cleaned data and creates insightful visualizations for better
+                        understanding.</p>
+                </div>
+
+                <div class="subdivision">
+                    <h3>Statistical Modeling</h3>
+                    <p>We use statistical techniques to identify patterns and trends, making predictions and informed
+                        decisions.</p>
+                </div>
+
+                <div class="subdivision">
+                    <h3>Machine Learning</h3>
+                    <p>Utilizing machine learning algorithms, we develop predictive models and data-driven solutions.
+                    </p>
+                </div>
+
+                <div class="subdivision">
+                    <h3>Data Insights</h3>
+                    <p>We provide in-depth data analysis insights to help you understand your data better and make
+                        data-driven decisions.</p>
+                </div>
+
+                <div class="subdivision">
+                    <h3>Track performance Metrics</h3>
+                    <p>Track performance metrics to measure the success of your initiatives and identify areas for
+                        improvement.</p>
+                </div>
+
+                <div class="subdivision">
+                    <h3>Trend Analysis</h3>
+                    <p>Our trend analysis helps you identify patterns and trends in your data, enabling you to stay
+                        ahead in the market.</p>
+                </div>
+                <div class="subdivision">
+                    <h3>Forcasting</h3>
+                    <p>Our forecasting services provide valuable predictions to aid your strategic planning and
+                        decision-making processes.</p>
+                </div>
+
+                <!-- Add more subdivisions as needed -->
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

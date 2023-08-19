@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About Us</title>
+    <style>
+        .about-us-main {
+            display: flex;
+        }
+
+        .about-us-img {
+            flex: 0 0 800px; /* Do not grow, do not shrink, set width to 800px */
+            height: 1100px;
+            background-color: #ff7200;
+            border: 1px solid #129948;
+        }
+
+        .about-us-content {
+            flex: 1; /* Grow to take remaining space */
+            height: 1100px;
+            background-color: #4e0e0e;
+            border: 1px solid #129948;
+        }
+    </style>
+</head>
+<body>
+    <div class="about-us-main">
+        <div class="about-us-img">Content of the Image Box</div>
+        <div class="about-us-content">Content of the Content Box</div>
+    </div>
+</body>
+</html>

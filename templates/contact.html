@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body class="contactpage-body">
+    <div class="main">
+        <div class="navbar">
+            <div class="icon">
+                <h2 class="logo">DataMind</h2>
+            </div>
+
+            <div class="menu">
+                <ul class="ulheader">
+                    <li class="liheader"><a class="aheader" href="{{ url_for('home') }}">HOME</a></li>
+                    <li class="liheader"><a class="aheader" href="{{ url_for('service_page') }}">SERVICES</a></li>
+                    <li class="liheader"><a class="aheader" href="{{ url_for('analysis_page') }}">ANALYSIS</a></li>
+                    <li class="liheader"><a class="aheader" href="{{ url_for('about_page') }}">ABOUT</a></li>
+                    <li class="liheader"><a class="aheader" href="{{ url_for('contact_page') }}">CONTACT</a></li>
+                </ul>
+            </div>
+
+            <div class="gotoadmin">
+                <a href="{{ url_for('admin_login_page') }}"><button class="btn">Admin Login</button></a>
+            </div>
+        </div>
+
+
+        <div class="contactpage-container">
+            <div class="contactpage-formbody">
+                <div class="contactpage-info">
+                    <h3 class="contact-us-title">Let's get in touch</h3>
+                    <p class="contact-us-text">
+                        We strive to provide exceptional customer service and
+                        your satisfaction. Please don't hesitate to reach out to us via phone, email.
+                    </p>
+                    <div class="info-img">
+                        <div class="information-img">
+                            <img src="img/location.png" class="icon-cont" alt="">
+                            <p>Haridwar, Uttarakhand</p>
+                        </div>
+                        <div class="information-img">
+                            <img src="img/email.png" class="icon-cont" alt="">
+                            <p>mail@datamind.com</p>
+                        </div>
+                        <div class="information-img">
+                            <img src="img/telephone.png" class="icon-cont" alt="">
+                            <p>+91-7900832609</p>
+                        </div>
+                    </div>
+                    <div class="contact-social-media">
+                        <p>Connect with us :</p>
+                        <div class="contact-social-icon">
+                            <a href="#">
+                                <ion-icon name="logo-facebook" style="color: black;">
+                            </a>
+                            <a href="#">
+                                <ion-icon name="logo-twitter" style="color: black;">
+                            </a>
+                            <a href="#">
+                                <ion-icon name="logo-instagram" style="color: black;">
+                            </a>
+                            <a href="#">
+                                <ion-icon name="logo-linkedin" style="color: black;">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contactpage-form">
+
+                    <form class="contact-us-form" action="/submit" method="post" autocomplete="off">
+                        <h3 class="contactus-title">Contact Us</h3>
+                        <div class="input-container-contact-us">
+                            <input type="text" name="name" placeholder="name" class="contact-us-input">
+                        </div>
+                        <div class="input-container-contact-us">
+                            <input type="email" name="email" placeholder="email" class="contact-us-input">
+                        </div>
+                        <div class="input-container-contact-us">
+                            <input type="tel" name="phone" placeholder="phone" class="contact-us-input">
+                        </div>
+                        <div class="input-container-contact-us"> <!---textarea-->
+                            <textarea name="message" placeholder="message" class="contact-us-input"></textarea>
+                        </div>
+                        <input type="submit" value="Send" class="contact-us-btn">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <script src="https://kit.fontawesome.com/64d58efce2.js"></script> -->
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+</body>
+
+</html>

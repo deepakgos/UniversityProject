@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Data Analysis Document</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <div class="main">
+        <div class="navbar">
+            <div class="icon">
+                <h2 class="logo">DataMind</h2>
+            </div>
+
+            <div class="menu">
+                <ul class="ulheader">
+                    <li class="liheader"><a class="aheader" href="{{ url_for('home') }}">HOME</a></li>
+                    <li class="liheader"><a class="aheader" href="{{ url_for('service_page') }}">SERVICES</a></li>
+                    <li class="liheader"><a class="aheader" href="{{ url_for('analysis_page') }}">ANALYSIS</a></li>
+                    <li class="liheader"><a class="aheader" href="{{ url_for('about_page') }}">ABOUT</a></li>
+                    <li class="liheader"><a class="aheader" href="{{ url_for('contact_page') }}">CONTACT</a></li>
+                </ul>
+            </div>
+
+            <div class="gotoadmin">
+                <!-- <input class="srch" name="" placeholder="Type to search"> -->
+                <a href="{{ url_for('admin_login_page') }}"><button class="btn">Admin Login</button></a>
+            </div>
+        </div>
+        <div class="content">
+            <h1>Decision making & <br><span>Data Analysis</span></h1>
+            <p class="par">Welcome to Datamind, your premier destination for cutting-edge data analysis
+                <br> solutions. In today's digital age, businesses and organizations generate an unprecedented
+                <br> amount of data every single day. Harnessing the power of this data is key to unlocking
+                <br> valuable insights and gaining a competitive edge. That's where we come in.
+            </p>
+            <button class="cn"><a href="{{ url_for('contact_page') }}">JOIN US</a></button>
+            <!-- <form action="{{ url_for('admin_login') }}" method="POST">
+                <div class="form">
+                    <h2>Login Here</h2>
+                    <input type="email" id="emailField" name="email" placeholder="Enter Email Here" autocomplete="off">
+                    <input type="password" id="passwordField" name="password" placeholder="Enter password Here" autocomplete="off">
+                    <button class="btnlogin"><a href="#">Login</a></button>
+
+                    <p class="link">Don't hvae an account<br>
+                        <a href="#">Sign Up </a>Here
+                    </p>
+                    <p class="loginwith">Log in with</p>
+
+                    <div class="icon">
+                        <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
+                        <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+                        <a href="#"><ion-icon name="logo-twitter"></ion-icon></a>
+                        <a href="#"><ion-icon name="logo-reddit"></ion-icon></a>
+                    </div>
+                </div>
+            </form> -->
+        </div>
+    </div>
+    <!-- <div class="galleryspace"><h2 style="color: aliceblue; padding: 20px;">Analysis Reports</h2></div> -->
+    <!-- <div class="gallery">
+        <div class="box"><a href="https://app.powerbi.com/reportEmbed?reportId=c5a066b9-4d85-4d75-8710-a6e90669a221&autoAuth=true&ctid=d70cb4db-69c4-4a49-aaf3-f1e7ac277686" target="_blank"><img src="/static/img_road.png" alt=""></a></div>
+        <div class="box"><a href="https://app.powerbi.com/reportEmbed?reportId=78c460f0-2e20-4822-9061-682139dd81a2&autoAuth=true&ctid=d70cb4db-69c4-4a49-aaf3-f1e7ac277686" target="_blank"><img src="/static/img_madhav.png" alt=""></a></div>
+        <div class="box"><a href="https://app.powerbi.com/reportEmbed?reportId=b80235b4-bd56-42cf-9e39-903ded1a7602&autoAuth=true&ctid=d70cb4db-69c4-4a49-aaf3-f1e7ac277686" target="_blank"><img src="/static/img_atliq.png" alt=""></a></div>
+    </div> -->
+    <div class="heading_reports">
+        <h2>OUR REPORTS</h2>
+    </div>
+    <div class="gallery">
+        <!-- Card 1 -->
+        <div class="box">
+            <a href="https://app.powerbi.com/reportEmbed?reportId=c5a066b9-4d85-4d75-8710-a6e90669a221&autoAuth=true&ctid=d70cb4db-69c4-4a49-aaf3-f1e7ac277686"
+                target="_blank">
+                <div class="card">
+                    <img src="/static/img_road.png" alt="">
+                    <div class="card-content">
+                        <h3>Analysis Report 1</h3>
+                        <p>Check out our first analysis report.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="box">
+            <a href="https://app.powerbi.com/reportEmbed?reportId=78c460f0-2e20-4822-9061-682139dd81a2&autoAuth=true&ctid=d70cb4db-69c4-4a49-aaf3-f1e7ac277686"
+                target="_blank">
+                <div class="card">
+                    <img src="/static/img_madhav.png" alt="">
+                    <div class="card-content">
+                        <h3>Analysis Report 2</h3>
+                        <p>Take a look at our second analysis report.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="box">
+            <a href="https://app.powerbi.com/reportEmbed?reportId=b80235b4-bd56-42cf-9e39-903ded1a7602&autoAuth=true&ctid=d70cb4db-69c4-4a49-aaf3-f1e7ac277686"
+                target="_blank">
+                <div class="card">
+                    <img src="/static/img_atliq.png" alt="">
+                    <div class="card-content">
+                        <h3>Analysis Report 3</h3>
+                        <p>Explore our third analysis report.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+
+    <!-- <div class="galleryspacebelow"></div> -->
+    <div class="circular-layout">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+
+        <!-- Add more circle divs as needed -->
+    </div>
+
+
+    <div class="what-we-do-above">
+        <h2 style="color: #ff7200; padding: 20px;">WHAT WE DO</h2>
+    </div>
+
+    <div class="what-we-do">
+        <div class="subdivision">
+            <h3>Data Collection and Cleaning</h3>
+            <p>We gather raw data from various sources and perform data cleaning to ensure accuracy and consistency.</p>
+        </div>
+
+        <div class="subdivision">
+            <h3>Data Analysis and Visualization</h3>
+            <p>Our team analyzes the cleaned data and creates insightful visualizations for better understanding.</p>
+        </div>
+
+        <div class="subdivision">
+            <h3>Statistical Modeling</h3>
+            <p>We use statistical techniques to identify patterns and trends, making predictions and informed decisions.
+            </p>
+        </div>
+
+        <div class="subdivision">
+            <h3>Machine Learning</h3>
+            <p>Utilizing machine learning algorithms, we develop predictive models and data-driven solutions.</p>
+        </div>
+
+        <div class="subdivision">
+            <h3>Data Insights</h3>
+            <p>We provide in-depth data analysis insights to help you understand your data better and make data-driven
+                decisions.</p>
+        </div>
+
+        <div class="subdivision">
+            <h3>Track performance Metrics</h3>
+            <p>Track performance metrics to measure the success of your initiatives and identify areas for improvement.
+            </p>
+        </div>
+
+        <div class="subdivision">
+            <h3>Trend Analysis</h3>
+            <p>Our trend analysis helps you identify patterns and trends in your data, enabling you to stay ahead in the
+                market.</p>
+        </div>
+        <div class="subdivision">
+            <h3>Forcasting</h3>
+            <p>Our forecasting services provide valuable predictions to aid your strategic planning and decision-making
+                processes.</p>
+        </div>
+
+        <!-- Add more subdivisions as needed -->
+    </div>
+
+
+    <!-- <div class="galleryspacebelow"></div> -->
+
+    <footer>
+        <!-- Footer content -->
+        <nav class="navfooter">
+            <ul class="navulfooter">
+                <li class="linavulfooter"><a class="alinavulfooter" href="#">Home</a></li>
+                <li class="linavulfooter"><a class="alinavulfooter" href="#">About</a></li>
+                <li class="linavulfooter"><a class="alinavulfooter" href="#">Services</a></li>
+                <li class="linavulfooter"><a class="alinavulfooter" href="#">Contact</a></li>
+            </ul>
+        </nav>
+
+
+        <ul class="footer-social-icons">
+            <li class="li-footer-social-icons"><a class="a-li-footer-social-icons" href="#"><ion-icon
+                        name="logo-facebook"></ion-icon></a></li>
+            <li class="li-footer-social-icons"><a class="a-li-footer-social-icons" href="#"><ion-icon
+                        name="logo-twitter"></ion-icon></a></li>
+            <li class="li-footer-social-icons"><a class="a-li-footer-social-icons" href="#"><ion-icon
+                        name="logo-instagram"></ion-icon></a></li>
+            <li class="li-footer-social-icons"><a class="a-li-footer-social-icons" href="#"><ion-icon
+                        name="logo-linkedin"></ion-icon></i></a></li>
+        </ul>
+
+
+        <p class="pcopyright">&copy; 2023 Your Website. All rights reserved.</p>
+
+        <p class="pfootercontact">Contact us: mail@datamind.com | Phone: 790-0832-609</p>
+
+
+        <ul class="footer-links">
+            <li class="li-footer-links"><a class="a-li-privacy" href="#">Privacy Policy</a></li>
+            <li class="li-footer-links"><a class="a-li-privacy" href="#">Terms of Service</a></li>
+        </ul>
+
+        <section class="newsletter">
+            <h3>Subscribe to our newsletter</h3>
+            <form>
+                <input type="email" placeholder="Enter your email">
+                <button type="submit">Subscribe</button>
+            </form>
+        </section>
+
+        <section class="additional-info">
+            <h3>Additional Information</h3>
+            <ul>
+                <li><a href="#">FAQs</a></li>
+                <li><a href="#">Support</a></li>
+                <li><a href="#">Sitemap</a></li>
+            </ul>
+        </section>
+    </footer>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <script>
+        window.onload = function() {
+            document.getElementById('emailField').value = '';
+            document.getElementById('passwordField').value = '';
+        };
+    </script>
+</body>
+
+</html>

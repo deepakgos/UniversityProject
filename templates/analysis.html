@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Data Analysis</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <div class="main">
+        <div class="navbar">
+            <div class="icon">
+                <h2 class="logo">DataMind</h2>
+            </div>
+
+            <div class="menu">
+                <ul class="ulheader">
+                    <li class="liheader"><a class="aheader" href="{{ url_for('home') }}">HOME</a></li>
+                    <li class="liheader"><a class="aheader" href="{{ url_for('service_page') }}">SERVICES</a></li>
+                    <li class="liheader"><a class="aheader" href="{{ url_for('analysis_page') }}">ANALYSIS</a></li>
+                    <li class="liheader"><a class="aheader" href="{{ url_for('about_page') }}">ABOUT</a></li>
+                    <li class="liheader"><a class="aheader" href="{{ url_for('contact_page') }}">CONTACT</a></li>
+                </ul>
+            </div>
+
+            <div class="gotoadmin">
+                <a href="{{ url_for('admin_login_page') }}"><button class="btn">Admin Login</button></a>
+            </div>
+        </div>
+
+        <div class="analysispage-container">
+            <!-- <h1>Data Analysis</h1> -->
+            <!-- <p>We provide cutting-edge data analysis services to help you gain valuable insights from your data.</p> -->
+            <!-- <div class="heading_reports">
+                <h2>OUR REPORTS</h2>
+                <p>We provide cutting-edge data analysis services to help you gain valuable insights from your data.</p>
+            </div> -->
+            <div class="gallery">
+                <div class="heading_reports">
+                    <h2>OUR REPORTS</h2>
+                    <p>We provide cutting-edge data analysis services to help you gain valuable insights from your data.
+                    </p>
+                </div>
+                <!-- Card 1 -->
+                <div class="box">
+                    <a href="https://app.powerbi.com/reportEmbed?reportId=c5a066b9-4d85-4d75-8710-a6e90669a221&autoAuth=true&ctid=d70cb4db-69c4-4a49-aaf3-f1e7ac277686"
+                        >
+                    <div class="card">
+                        <img src="/static/img_road.png" alt="">
+                        <div class="card-content">
+                            <h3>Analysis Report 1</h3>
+                            <p>Check out our first analysis report.</p>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+
+
+                <!-- <iframe id="RoadAccident" width="1140" height="541.25"
+                    src="https://app.powerbi.com/reportEmbed?reportId=c5a066b9-4d85-4d75-8710-a6e90669a221&autoAuth=true&ctid=d70cb4db-69c4-4a49-aaf3-f1e7ac277686"
+                    frameborder="0" allowFullScreen="true"></iframe> -->
+
+                <!-- Card 2 -->
+                <div class="box">
+                    <a href="https://app.powerbi.com/reportEmbed?reportId=78c460f0-2e20-4822-9061-682139dd81a2&autoAuth=true&ctid=d70cb4db-69c4-4a49-aaf3-f1e7ac277686"
+                        >
+                    <div class="card">
+                        <img src="/static/img_madhav.png" alt="">
+                        <div class="card-content">
+                            <h3>Analysis Report 2</h3>
+                            <p>Take a look at our second analysis report.</p>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+
+                <!-- <iframe id="MadhavStore" width="1140" height="541.25"
+                    src="https://app.powerbi.com/reportEmbed?reportId=78c460f0-2e20-4822-9061-682139dd81a2&autoAuth=true&ctid=d70cb4db-69c4-4a49-aaf3-f1e7ac277686"
+                    frameborder="0" allowFullScreen="true"></iframe> -->
+
+                <!-- Card 3 -->
+                <div class="box">
+                    <a href="https://app.powerbi.com/reportEmbed?reportId=b80235b4-bd56-42cf-9e39-903ded1a7602&autoAuth=true&ctid=d70cb4db-69c4-4a49-aaf3-f1e7ac277686"
+                        >
+                    <div class="card">
+                        <img src="/static/img_atliq.png" alt="">
+                        <div class="card-content">
+                            <h3>Analysis Report 3</h3>
+                            <p>Explore our third analysis report.</p>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+
+                <!-- <iframe id="AtliqSalesInsights" width="1140" height="541.25"
+                    src="https://app.powerbi.com/reportEmbed?reportId=6e44e81a-4acb-4d42-99b5-f9e82ed69bd1&autoAuth=true&ctid=d70cb4db-69c4-4a49-aaf3-f1e7ac277686"
+                    frameborder="0" allowFullScreen="true"></iframe> -->
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <script>
+        function toggleIframe() {
+            var iframe = document.getElementById(iframeId);
+            if (iframe.style.display === "none") {
+                iframe.style.display = "block";
+            } else {
+                iframe.style.display = "none";
+            }
+        }
+    </script> -->
+</body>
+
+</html>
