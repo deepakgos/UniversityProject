@@ -62,20 +62,23 @@ def admin_login():
         password = request.form.get('password')
 
         # Check if admin credentials are valid
-        if email == 'admin@example.com' and password == 'admin_password':
-            # Fetch the list of people who have contacted
-            try:
-                conn = create_connection()
-                cursor = conn.cursor()
-                cursor.execute("SELECT name, email, phone, message,timestamp FROM tblContactForm order by timestamp desc")
+        # if email == 'admin@example.com' and password == 'admin_password':
+        # Fetch the list of people who have contacted
+        try:
+            conn = create_connection()
+            cursor = conn.cursor()
+            cursor.execute("SELECT email, password FROM AdminCredentials WHERE email = ? AND password = ?", email, password)
+            admin = cursor.fetchone()
+            if admin:
+                cursor.execute("SELECT name, email, phone, message, timestamp FROM tblContactForm ORDER BY timestamp DESC")
                 contact_list = cursor.fetchall()
                 conn.close()
 
                 return render_template('admin_dashboard.html', contact_list=contact_list)
 
-            except Exception as e:
-                print("An error occurred:", str(e))
-                return "An error occurred while fetching data."
+        except Exception as e:
+            print("An error occurred:", str(e))
+            return "An error occurred while fetching data."
 
     return render_template('admin_login.html')
 
@@ -89,10 +92,6 @@ def submit_form():
     phone = request.form.get('phone')
     message = request.form.get('message')
 
-    # print("Name:", name)
-    # print("Email:", email)
-    # print("Phone:", phone)
-    # print("Message:", message)
 
     try:
         # Create a database connection
