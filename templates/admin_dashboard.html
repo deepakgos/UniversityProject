@@ -13,6 +13,7 @@
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Message</th>
+                <th>Timestamp</th>
             </tr>
             {% for contact in contact_list %}
             <tr>
@@ -20,6 +21,7 @@
                 <td>{{ contact[1] }}</td>
                 <td>{{ contact[2] }}</td>
                 <td>{{ contact[3] }}</td>
+                <td>{{ contact[4] }}</td> <!-- Format timestamp -->
             </tr>
             {% endfor %}
         </table>
