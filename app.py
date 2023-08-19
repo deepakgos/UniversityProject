@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template, send_from_directory
+from datetime import datetime  # Import the datetime module
 import pyodbc
 import os
 
@@ -66,7 +67,7 @@ def admin_login():
             try:
                 conn = create_connection()
                 cursor = conn.cursor()
-                cursor.execute("SELECT name, email, phone, message FROM tblContactForm order by name")
+                cursor.execute("SELECT name, email, phone, message,timestamp FROM tblContactForm order by timestamp desc")
                 contact_list = cursor.fetchall()
                 conn.close()
 
@@ -88,20 +89,23 @@ def submit_form():
     phone = request.form.get('phone')
     message = request.form.get('message')
 
-    print("Name:", name)
-    print("Email:", email)
-    print("Phone:", phone)
-    print("Message:", message)
+    # print("Name:", name)
+    # print("Email:", email)
+    # print("Phone:", phone)
+    # print("Message:", message)
 
     try:
         # Create a database connection
         conn = create_connection()
 
+        # Get the current timestamp
+        timestamp = datetime.now()
+
         # Insert form data into the database
         cursor = conn.cursor()
         cursor.execute(
-            "INSERT INTO tblContactForm (name, email, phone, message) VALUES (?, ?, ?, ?)",
-            name, email, phone, message
+            "EXEC EnterContactDetails @name=?, @email=?, @phone=?, @message=?, @timestamp=?",
+            name, email, phone, message, timestamp
         )
         conn.commit()
         cursor.close()
