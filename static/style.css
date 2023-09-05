@@ -623,6 +623,18 @@ textarea.contact-us-input{
     resize: none;
     overflow-y: auto;
 }
+.contact-us-input-lebel{
+    color: #fff;
+    font-weight: 500;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+}
+
+.note-for-file-upload{
+    color: #fff;
+    font-weight: 400;
+    font-size: 0.75rem;
+}
 
 .contact-us-btn{
     padding: 0.6rem 1.3rem;
@@ -803,7 +815,7 @@ body {
 
 /* Style for the admin dashboard container */
 .admin-dashboard {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 50px auto;
     padding: 20px;
     background-color: #ffffff;

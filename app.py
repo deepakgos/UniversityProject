@@ -1,5 +1,7 @@
 from flask import Flask, request, render_template, send_from_directory
 from datetime import datetime  # Import the datetime module
+from flask import send_from_directory
+from werkzeug.utils import secure_filename  # Import secure_filename function
 import pyodbc
 import os
 
@@ -85,6 +87,41 @@ def admin_login():
 
 
 # Route to handle the form submission
+# @app.route('/submit', methods=['POST'])
+# def submit_form():
+#     name = request.form.get('name')
+#     email = request.form.get('email')
+#     phone = request.form.get('phone')
+#     message = request.form.get('message')
+
+
+#     try:
+#         # Create a database connection
+#         conn = create_connection()
+
+#         # Get the current timestamp
+#         timestamp = datetime.now()
+
+#         # Insert form data into the database
+#         cursor = conn.cursor()
+#         cursor.execute(
+#             "EXEC EnterContactDetails @name=?, @email=?, @phone=?, @message=?, @timestamp=?",
+#             name, email, phone, message, timestamp
+#         )
+#         conn.commit()
+#         cursor.close()
+#         conn.close()
+
+#         # Clear form fields and render the contact form again
+#         return render_template('contact.html', message="Form submitted successfully.")
+
+#     except Exception as e:
+#         # Handle any errors that occur during database operations
+#         print("An error occurred while submitting the form:", str(e))
+#         return "An error occurred while submitting the form."
+
+
+
 @app.route('/submit', methods=['POST'])
 def submit_form():
     name = request.form.get('name')
@@ -92,7 +129,43 @@ def submit_form():
     phone = request.form.get('phone')
     message = request.form.get('message')
 
+    # Check if a file was uploaded
+    if 'zip_file' in request.files:
+        zip_file = request.files['zip_file']
 
+        # Handle the uploaded zip file (e.g., save it to the 'uploads' folder)
+        if zip_file and zip_file.filename.endswith('.zip'):
+            # Generate a unique filename (you can use a timestamp)
+            timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+            filename = f"{timestamp}_{secure_filename(zip_file.filename)}"
+            zip_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+            try:
+                # Create a database connection
+                conn = create_connection()
+
+                # Get the current timestamp
+                timestamp = datetime.now()
+
+                # Insert form data into the database, including the filename
+                cursor = conn.cursor()
+                cursor.execute(
+                    "EXEC EnterContactDetails @name=?, @email=?, @phone=?, @message=?, @timestamp=?, @zip_filename=?",
+                    name, email, phone, message, timestamp, filename
+                )
+                conn.commit()
+                cursor.close()
+                conn.close()
+
+                # Clear form fields and render the contact form again
+                return render_template('contact.html', message="Form submitted successfully.")
+
+            except Exception as e:
+                # Handle any errors that occur during database operations
+                print("An error occurred while submitting the form:", str(e))
+                return "An error occurred while submitting the form."
+
+    # If no file was uploaded or the uploaded file is not a .zip file, proceed without saving and just insert the form data
     try:
         # Create a database connection
         conn = create_connection()
@@ -100,10 +173,10 @@ def submit_form():
         # Get the current timestamp
         timestamp = datetime.now()
 
-        # Insert form data into the database
+        # Insert form data into the database without a filename
         cursor = conn.cursor()
         cursor.execute(
-            "EXEC EnterContactDetails @name=?, @email=?, @phone=?, @message=?, @timestamp=?",
+            "EXEC EnterContactDetails @name=?, @email=?, @phone=?, @message=?, @timestamp=?, @zip_filename=NULL",
             name, email, phone, message, timestamp
         )
         conn.commit()
@@ -117,6 +190,35 @@ def submit_form():
         # Handle any errors that occur during database operations
         print("An error occurred while submitting the form:", str(e))
         return "An error occurred while submitting the form."
+
+# Route to render the admin dashboard
+@app.route('/admin/dashboard')
+def admin_dashboard():
+    # Fetch the list of people who have contacted (you can move this code to a function)
+    try:
+        conn = create_connection()
+        cursor = conn.cursor()
+        cursor.execute("SELECT name, email, phone, message, timestamp, zip_filename FROM tblContactForm ORDER BY timestamp DESC")
+        contact_list = cursor.fetchall()
+        conn.close()
+
+        return render_template('admin_dashboard.html', contact_list=contact_list)
+
+    except Exception as e:
+        print("An error occurred:", str(e))
+        return "An error occurred while fetching data."
+
+#Route to handle downloads
+@app.route('/download_zip/<filename>')
+def download_zip(filename):
+    zip_file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    print(f"Attempting to download file: {zip_file_path}")
+
+    # Check if the file exists before attempting to send it
+    if os.path.exists(zip_file_path):
+        return send_from_directory(app.config['UPLOAD_FOLDER'], filename, as_attachment=True)
+    else:
+        return "File not found."
 
 # Run the Flask app
 if __name__ == '__main__':

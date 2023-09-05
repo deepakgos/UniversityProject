@@ -14,6 +14,8 @@
                 <th>Phone</th>
                 <th>Message</th>
                 <th>Timestamp</th>
+                <th>Filename</th>
+                <th>Action</th> <!-- Add a new column for the download button -->
             </tr>
             {% for contact in contact_list %}
             <tr>
@@ -22,6 +24,13 @@
                 <td>{{ contact[2] }}</td>
                 <td>{{ contact[3] }}</td>
                 <td>{{ contact[4] }}</td> <!-- Format timestamp -->
+                <td>{{ contact[5] }}</td>
+                <td>
+                    <!-- Generate a unique filename for each row -->
+                    {% set dynamic_filename = contact[5] %}
+                    <!-- Display the dynamic_filename for debugging -->
+                    <a href="{{ url_for('download_zip', filename=dynamic_filename) }}" class="btn" download>Download Zip</a>
+                </td>
             </tr>
             {% endfor %}
         </table>
