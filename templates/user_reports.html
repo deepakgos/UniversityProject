@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Your HTML head content goes here -->
+</head>
+<body>
+    <!-- Your page content goes here -->
+    
+    {% if embedded_link %}
+        <a href="{{ embedded_link }}">Click here to access the report</a>
+    {% else %}
+        <p>No report available.</p>
+    {% endif %}
+</body>
+</html>

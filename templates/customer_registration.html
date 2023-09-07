@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body class="contactpage-body">
+    <div class="main">
+        <div class="navbar">
+            <div class="icon">
+                <h2 class="logo">DataMind</h2>
+            </div>
+
+            <div class="menu">
+                <ul class="ulheader">
+                    <li class="liheader"><a class="aheader" href="{{ url_for('home') }}">HOME</a></li>
+                    <li class="liheader"><a class="aheader" href="{{ url_for('service_page') }}">SERVICES</a></li>
+                    <li class="liheader"><a class="aheader" href="{{ url_for('analysis_page') }}">ANALYSIS</a></li>
+                    <li class="liheader"><a class="aheader" href="{{ url_for('about_page') }}">ABOUT</a></li>
+                    <li class="liheader"><a class="aheader" href="{{ url_for('upload_page') }}">UPLOAD</a></li>
+                </ul>
+            </div>
+
+            <!-- <div class="gotoadmin">
+                <a href="{{ url_for('admin_login_page') }}"><button class="btn">Admin Login</button></a>
+            </div> -->
+        </div>
+
+        <div class="registerpage-container">
+            <div class="registerpage-formbody">
+
+                <div class="registerpage-form">
+
+                    <form class="register-us-form" action="/register" method="post" autocomplete="off">
+                        <h3 class="registerus-title">Register</h3>
+                        <div class="input-container-register-us">
+                            <input type="text" name="firstname" placeholder="firstname" class="register-us-input">
+                        </div>
+                        <div class="input-container-register-us">
+                            <input type="text" name="lastname" placeholder="lastname" class="register-us-input">
+                        </div>
+                        <div class="input-container-register-us">
+                            <input type="email" name="email" placeholder="email" class="register-us-input">
+                        </div>
+                        <div class="input-container-register-us">
+                            <input type="password" name="password" placeholder="password" class="register-us-input">
+                        </div>
+                        <div class="input-container-register-us">
+                            <input type="tel" name="phone" placeholder="phone" class="register-us-input">
+                        </div>
+                        <div class="input-container-register-us">
+                            <input type="text" name="address" placeholder="address" class="register-us-input">
+                        </div>
+                        <div class="input-container-register-us">
+                            <input type="text" name="city" placeholder="city" class="register-us-input">
+                        </div>
+                        <div class="input-container-register-us">
+                            <input type="text" name="state" placeholder="state" class="register-us-input">
+                        </div>
+                        <div class="input-container-register-us">
+                            <input type="text" name="postalcode" placeholder="postalcode" class="register-us-input">
+                        </div>
+                        <div class="input-container-register-us">
+                            <input type="text" name="country" placeholder="country" class="register-us-input">
+                        </div>
+                        <input type="submit" value="Register" class="register-us-btn">
+                    </form>
+                    <!-- <div class="link">
+                        Already have an account? <a href="#">Login</a>
+                    </div> -->
+                    <p class="link-customer-registration">Already have an account?<br>
+                        <a href="{{ url_for('customer_login') }}">Login</a>Here
+                    </p>                  
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <script src="https://kit.fontawesome.com/64d58efce2.js"></script> -->
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <!-- Your registration form and other HTML elements -->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+                // Create a div element for the alert message
+                var alertDiv = document.createElement("div");
+                alertDiv.style.backgroundColor = "#4CAF50"; // Green background color
+                alertDiv.style.color = "white"; // Text color
+                alertDiv.style.padding = "15px"; // Padding for the alert
+                alertDiv.style.borderRadius = "5px"; // Rounded corners
+                alertDiv.style.textAlign = "center"; // Center the text
+                alertDiv.textContent = "{{ message }}"; // Set the message text
+        
+                // Append the alert to the document body
+                document.body.appendChild(alertDiv);
+        });
+    </script>
+        
+    
+</body>
+
+</html>

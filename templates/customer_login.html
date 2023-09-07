@@ -22,26 +22,26 @@
                     <li class="liheader"><a class="aheader" href="{{ url_for('upload_page') }}">UPLOAD</a></li>
                 </ul>
             </div>
-
-            <!-- <div class="gotoadmin">
-                <input class="srch" name="" placeholder="Type to search">
-                <a href="{{ url_for('admin_login') }}"><button class="btn">Admin Login</button></a>
-            </div> -->
         </div>
 
 
 
-        <div class="admin-login">
-            <!-- <h2>Admin Login</h2> -->
-            <form action="{{ url_for('admin_login') }}" method="POST">
+        <div class="customer-login">
+            <form action="{{ url_for('customer_login') }}" method="POST">
                 <div class="form">
-                    <h2>Admin Login</h2>
+                    <h2>User Login</h2>
                     <input type="email" id="emailField" name="email" placeholder="Enter Email Here" autocomplete="off">
-                    <input type="password" id="passwordField" name="password" placeholder="Enter password Here" autocomplete="off">
+                    <input type="password" id="passwordField" name="password" placeholder="Enter Password Here" autocomplete="off">
                     <button class="btnlogin"><a href="#">Login</a></button>
-    
-                    <p class="link">Don't have an account<br>
-                        <a href="#">Sign Up </a>Here
+                    
+
+                    <!-- Display error message as an alert (hidden by default) -->
+                    <div id="errorAlert" class="alert alert-danger" style="display: none;">
+                        {{ error }}
+                    </div>
+
+                    <p class="link-customer-login">Don't have an account<br>
+                        <a href="{{ url_for('customer_registration_page') }}">Register </a>Here
                     </p>
                 </div>
             </form>
@@ -53,6 +53,14 @@
                 document.getElementById('emailField').value = '';
                 document.getElementById('passwordField').value = '';
             };
+
+            // Show the error message as a popup alert when it's not empty
+            var errorMessage = "{{ error }}";
+            console.log("Error message:", errorMessage);
+            if (errorMessage) {
+                alert(errorMessage);
+            }
+
         </script>
 
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
