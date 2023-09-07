@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, send_from_directory
+from flask import Flask, request, render_template, send_from_directory, redirect, url_for
 from datetime import datetime  # Import the datetime module
 from flask import send_from_directory
 from werkzeug.utils import secure_filename  # Import secure_filename function
@@ -34,15 +34,20 @@ def about_page():
 def service_page():
     return render_template('service.html')
 
+# Route to handle the services page
+@app.route('/servicereports')
+def servicedem_page():
+    return render_template('services.html')
+
 # Route to handle the report page
 @app.route('/analysis')
 def analysis_page():
     return render_template('analysis.html')
 
-# Route to handle the contact page
-@app.route('/contact')
-def contact_page():
-    return render_template('contact.html')
+# Route to handle the upload page
+@app.route('/upload data')
+def upload_page():
+    return render_template('upload.html')
 
 # Route to handle the admin_login page
 @app.route('/admin_login')
@@ -55,6 +60,10 @@ def serve_static(filename):
     root_dir = os.path.dirname(os.getcwd())
     return send_from_directory(os.path.join(root_dir, 'static'), filename)
 
+# Route to handle the customer_registration page
+@app.route('/customer_registration')
+def customer_registration_page():
+    return render_template('customer_registration.html')
 
 #Route to handle admin login
 @app.route('/admin/login', methods=['GET', 'POST'])
@@ -83,43 +92,6 @@ def admin_login():
             return "An error occurred while fetching data."
 
     return render_template('admin_login.html')
-
-
-
-# Route to handle the form submission
-# @app.route('/submit', methods=['POST'])
-# def submit_form():
-#     name = request.form.get('name')
-#     email = request.form.get('email')
-#     phone = request.form.get('phone')
-#     message = request.form.get('message')
-
-
-#     try:
-#         # Create a database connection
-#         conn = create_connection()
-
-#         # Get the current timestamp
-#         timestamp = datetime.now()
-
-#         # Insert form data into the database
-#         cursor = conn.cursor()
-#         cursor.execute(
-#             "EXEC EnterContactDetails @name=?, @email=?, @phone=?, @message=?, @timestamp=?",
-#             name, email, phone, message, timestamp
-#         )
-#         conn.commit()
-#         cursor.close()
-#         conn.close()
-
-#         # Clear form fields and render the contact form again
-#         return render_template('contact.html', message="Form submitted successfully.")
-
-#     except Exception as e:
-#         # Handle any errors that occur during database operations
-#         print("An error occurred while submitting the form:", str(e))
-#         return "An error occurred while submitting the form."
-
 
 
 @app.route('/submit', methods=['POST'])
@@ -158,7 +130,7 @@ def submit_form():
                 conn.close()
 
                 # Clear form fields and render the contact form again
-                return render_template('contact.html', message="Form submitted successfully.")
+                return render_template('upload.html', message="Form submitted successfully.")
 
             except Exception as e:
                 # Handle any errors that occur during database operations
@@ -184,7 +156,7 @@ def submit_form():
         conn.close()
 
         # Clear form fields and render the contact form again
-        return render_template('contact.html', message="Form submitted successfully.")
+        return render_template('upload.html', message="Form submitted successfully.")
 
     except Exception as e:
         # Handle any errors that occur during database operations
@@ -219,7 +191,291 @@ def download_zip(filename):
         return send_from_directory(app.config['UPLOAD_FOLDER'], filename, as_attachment=True)
     else:
         return "File not found."
+    
+
+#Route to handle customer registrations
+@app.route('/register', methods=['POST'])
+def submit():
+    if request.method == 'POST':
+        firstname = request.form['firstname']
+        lastname = request.form['lastname']
+        email = request.form['email']
+        password = request.form['password']
+        phone = request.form['phone']
+        address = request.form['address']
+        city = request.form['city']
+        state = request.form['state']
+        postalcode = request.form['postalcode']
+        country = request.form['country']
+
+        # Insert data into the database
+        conn = create_connection()
+        cursor = conn.cursor()
+        cursor.execute("Exec sp_EnterRegistrationDetails @FirstName=?, @LastName=?, @Email=?, @Password=?, @Phone=?, @Address=?, @City=?, @State=?, @PostalCode=?, @Country=?",
+                       firstname, lastname, email, password, phone, address, city, state, postalcode, country)
+        conn.commit()
+        cursor.close()
+
+        # return 'Registration Successful! Thank you for registering.'
+    return render_template('customer_registration.html',message='Registration Successful! Thank you for registering.')
+
+# # Route to handle the customer_login page
+# @app.route('/customer_login')
+# def customer_login_page():
+#     return render_template('customer_login.html')
+
+
+# @app.route('/customer/login', methods=['GET', 'POST'])
+# def customer_login():
+#     try:
+#         if request.method == 'POST':
+#             email = request.form.get('email')
+#             password = request.form.get('password')
+#             print(f"Received email: {email}, password: {password}")
+        
+#             conn = create_connection()
+#             cursor = conn.cursor()
+#             cursor.execute('SELECT * FROM tblCustomerRegistration WHERE Email = ? AND Password = ?', (email, password))
+#             customer = cursor.fetchone()
+#             conn.close()
+
+#             if customer:
+#                 # Debug: Print a message when the login is successful
+#                 print("Login successful!")
+                
+#                 # Redirect to services.html with a success flag and email
+#                 return redirect(url_for('services', success=True, email=email))
+#             else:
+#                 error_message = 'Invalid email or password. Please try again.'
+#                 return render_template('customer_login.html', error=error_message)
+
+#         return render_template('customer_login.html')
+
+#     except Exception as e:
+#         # Handle any exceptions that occur
+#         print("An error occurred:", str(e))
+#         return "An error occurred while processing your request."
+
+
+# @app.route('/services')
+# def services():
+#     try:
+#         success_flag = request.args.get('success', False)
+#         email = request.args.get('email')
+
+#         if success_flag and email:
+#             # email = request.form['email']
+#             email = request.form.get('email')
+
+#             # Check if there is an embedded link for this customer in tblReportMaster
+#             conn = create_connection()
+#             cursor = conn.cursor()
+#             cursor.execute('SELECT * FROM tblCustomerRegistration WHERE Email = ?', (email,))
+#             customer = cursor.fetchone()
+
+#             if customer:
+#                 cursor.execute('SELECT * FROM tblReportMaster WHERE CustomerID = ?', (customer.CustomerID,))
+#                 report = cursor.fetchone()
+#                 conn.close()
+
+#                 if report and report.EmbeddedLink:
+#                     # There is an embedded link, so redirect to user_reports.html
+#                     return redirect(url_for('user_reports', success=True, email=email))
+#                 else:
+#                     # There is no embedded link, show the "please upload data" message
+#                     return render_template('contact.html', message='Please upload data to access your reports.')
+
+#         # If there is no success flag or email, redirect to the login page
+#         return redirect(url_for('customer_login'))
+
+#     except Exception as e:
+#         # Handle any exceptions that occur during the request
+#         print("An error occurred:", str(e))
+#         return "An error occurred while processing your request."
+
+#     # If everything goes well, this point should not be reached
+
+
+# @app.route('/user_reports')
+# def user_reports():
+#     try:
+#         success_flag = request.args.get('success', False)
+
+#         if success_flag:
+#             email = request.args.get('email')
+
+#             # Check if there is an embedded link for this customer in tblReportMaster
+#             conn = create_connection()
+#             cursor = conn.cursor()
+#             cursor.execute('SELECT * FROM tblCustomerRegistration WHERE Email = ?', (email,))
+#             customer = cursor.fetchone()
+
+#             if customer:
+#                 cursor.execute('SELECT * FROM tblReportMaster WHERE CustomerID = ?', (customer.CustomerID,))
+#                 report = cursor.fetchone()
+#                 conn.close()
+
+#                 if report and report.EmbeddedLink:
+#                     # Implement the logic to retrieve and display the reports here
+#                     return render_template('user_reports.html')
+
+#         # If there is no success flag, email, or embedded link, redirect to the login page
+#         return redirect(url_for('customer_login'))
+
+#     except Exception as e:
+#         # Handle any exceptions that occur during the request
+#         print("An error occurred:", str(e))
+#         return "An error occurred while processing your request."
+
+#     # If everything goes well, this point should not be reached
+
+
+
+# Route to handle the customer_login
+
+# @app.route('/customer/login', methods=['GET','POST'])
+# def customer_login():
+#     try:
+#         if request.method == 'POST':
+#             email = request.form.get('email')
+#             password = request.form.get('password')
+            
+#             conn = create_connection()
+#             cursor = conn.cursor()
+#             cursor.execute('SELECT * FROM tblCustomerRegistration WHERE Email = ? AND Password = ?', (email, password))
+#             customer = cursor.fetchone()
+#             conn.close()
+
+#             if customer:
+#                 # Instead of accessing elements by string indices, use integer indices
+#                 customer_id = customer[0]  # Replace 0 with the correct index of CustomerID
+#                 # Check for an embedded link in tblReportMaster
+#                 conn = create_connection()
+#                 cursor = conn.cursor()
+#                 cursor.execute('SELECT * FROM tblReportMaster WHERE CustomerID = ?', (customer_id,))
+#                 report = cursor.fetchone()
+#                 conn.close()
+
+#                 # if report and report[1]:  # Replace 1 with the correct index of EmbeddedLink
+#                 #     # There is an embedded link, so redirect to user_reports.html
+#                 #     return render_template('user_reports.html')
+#                 if report and report[1]:  # Replace 1 with the correct index of EmbeddedLink
+#                     print(f"Redirecting to: {report[1]}")  # Add this line for debugging
+#                     return render_template('user_reports.html')
+
+#                 else:
+#                     # There is no embedded link, show the "please upload data" message
+#                     return render_template('contact.html', message='Please upload data to access your reports.')
+
+#             else:
+#                 error_message = 'Invalid email or password. Please try again.'
+#                 return render_template('customer_login.html', error=error_message)
+
+#         return render_template('customer_login.html')
+
+#     except Exception as e:
+#         # Handle any exceptions that occur
+#         print("An error occurred:", str(e))
+#         return "An error occurred while processing your request."
+
+
+@app.route('/customer/<int:customer_id>')
+def customer_profile(customer_id):
+    # Your code to retrieve customer information goes here
+    # You can use the customer_id parameter to look up the customer's data
+    return f"Customer Profile Page for ID {customer_id}"
+
+
+
+
+# @app.route('/customer/login', methods=['GET', 'POST'])
+# def customer_login():
+#     try:
+#         if request.method == 'POST':
+#             email = request.form.get('email')
+#             password = request.form.get('password')
+            
+#             conn = create_connection()
+#             cursor = conn.cursor()
+#             cursor.execute('SELECT * FROM tblCustomerRegistration WHERE Email = ? AND Password = ?', (email, password))
+#             customer = cursor.fetchone()
+#             conn.close()
+
+#             if customer:
+#                 # Instead of accessing elements by string indices, use integer indices
+#                 customer_id = customer[0]  # Replace 0 with the correct index of CustomerID
+#                 # Check for an embedded link in tblReportMaster
+#                 conn = create_connection()
+#                 cursor = conn.cursor()
+#                 cursor.execute('SELECT * FROM tblReportMaster WHERE CustomerID = ?', (customer_id,))
+#                 report = cursor.fetchone()
+#                 conn.close()
+
+#                 if report and report[1]:  # Replace 1 with the correct index of EmbeddedLink
+#                     # Pass 'report' to the template
+#                     print(f"Embedded Link: {report[1]}")
+#                     return render_template('user_reports.html', report=report)
+#                 else:
+#                     # There is no embedded link, show the "please upload data" message
+#                     return render_template('contact.html', message='Please upload data to access your reports.')
+
+#             else:
+#                 error_message = 'Invalid email or password. Please try again.'
+#                 return render_template('customer_login.html', error=error_message)
+
+#         return render_template('customer_login.html')
+
+#     except Exception as e:
+#         # Handle any exceptions that occur
+#         print("An error occurred:", str(e))
+#         return "An error occurred while processing your request."
+
+
+
+
+@app.route('/customer/login', methods=['GET', 'POST'])
+def customer_login():
+    try:
+        if request.method == 'POST':
+            email = request.form.get('email')
+            password = request.form.get('password')
+            
+            conn = create_connection()
+            cursor = conn.cursor()
+            cursor.execute('SELECT * FROM tblCustomerRegistration WHERE Email = ? AND Password = ?', (email, password))
+            customer = cursor.fetchone()
+            conn.close()
+
+            if customer:
+                # Instead of accessing elements by string indices, use integer indices
+                customer_id = customer[0]  # Replace 0 with the correct index of CustomerID
+                # Check for an embedded link in tblReportMaster
+                conn = create_connection()
+                cursor = conn.cursor()
+                cursor.execute('SELECT EmbeddedLink FROM tblReportMaster WHERE CustomerID = ?', (customer_id,))
+                report = cursor.fetchone()
+                conn.close()
+
+                if report and report[0]:  # Replace 0 with the correct index of EmbeddedLink
+                    # Pass 'report' to the template
+                    embedded_link = report[0]
+                    print(f"Embedded Link: {embedded_link}")
+                    return render_template('user_reports.html', embedded_link=embedded_link)
+                else:
+                    # There is no embedded link, show the "please upload data" message
+                    return render_template('upload.html', message='Please upload data to access your reports.')
+
+            else:
+                error_message = 'Invalid email or password. Please try again.'
+                return render_template('customer_login.html', error=error_message)
+
+        return render_template('customer_login.html')
+
+    except Exception as e:
+        # Handle any exceptions that occur
+        print("An error occurred:", str(e))
+        return "An error occurred while processing your request."
 
 # Run the Flask app
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

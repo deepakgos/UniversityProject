@@ -19,12 +19,22 @@
                     <li class="liheader"><a class="aheader" href="{{ url_for('service_page') }}">SERVICES</a></li>
                     <li class="liheader"><a class="aheader" href="{{ url_for('analysis_page') }}">ANALYSIS</a></li>
                     <li class="liheader"><a class="aheader" href="{{ url_for('about_page') }}">ABOUT</a></li>
-                    <li class="liheader"><a class="aheader" href="{{ url_for('contact_page') }}">CONTACT</a></li>
+                    <li class="liheader"><a class="aheader" href="{{ url_for('upload_page') }}">UPLOAD</a></li>
                 </ul>
             </div>
 
-            <div class="gotoadmin">
+            <!-- <div class="gotoadmin">
                 <a href="{{ url_for('admin_login_page') }}"><button class="btn">Admin Login</button></a>
+            </div>
+
+            <div class="gotocustomerregistration">
+                <a href="{{ url_for('customer_registration_page') }}"><button class="btn">Register</button></a>
+            </div> -->
+
+            <div class="gotoadmin-register">
+                <a href="{{ url_for('admin_login_page') }}"><button class="btn">Admin Login</button></a>
+                <a href="{{ url_for('customer_registration_page') }}"><button class="btn">Register</button></a>
+                <a href="{{ url_for('customer_login') }}"><button class="btn">User Login</button></a>
             </div>
         </div>
 
