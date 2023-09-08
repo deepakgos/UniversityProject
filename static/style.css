@@ -1005,3 +1005,21 @@ tr:hover {
     display: block !important; /* Use !important to override other styles */
     /* Add other styles as needed */
 }
+
+.alert-warning{
+    text-decoration: none;
+    color: #ff7200;
+    background-color: #fff;
+    padding: 2px;
+    margin: 2px;
+    border-radius: 25px;
+}
+
+.alert-success{
+    text-decoration: none;
+    color: #ff7200;
+    background-color: #fff;
+    padding: 2px;
+    margin: 2px;
+    border-radius: 25px;
+}

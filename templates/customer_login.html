@@ -36,19 +36,25 @@
                     
 
                     <!-- Display error message as an alert (hidden by default) -->
-                    <div id="errorAlert" class="alert alert-danger" style="display: none;">
+                    <!-- <div id="errorAlert" class="alert alert-danger" style="display: none;">
                         {{ error }}
-                    </div>
+                    </div> -->
 
                     <p class="link-customer-login">Don't have an account<br>
                         <a href="{{ url_for('customer_registration_page') }}">Register </a>Here
                     </p>
+
+                    {% if error %}
+                    <div class="alert-warning">
+                        <b>Alert : </b>Please <a href="{{ url_for('customer_registration_page') }}">register</a> first to Login.
+                    </div>
+                    {% endif %}
                 </div>
             </form>
         </div>
     
     
-        <script>
+        <!-- <script>
             window.onload = function() {
                 document.getElementById('emailField').value = '';
                 document.getElementById('passwordField').value = '';
@@ -61,7 +67,7 @@
                 alert(errorMessage);
             }
 
-        </script>
+        </script> -->
 
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
 

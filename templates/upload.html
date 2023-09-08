@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Form</title>
+    <title>Upload Form</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
 
@@ -84,6 +84,17 @@
                 </div>
 
                 <div class="contactpage-form">
+                    {% if upload_success %}
+                    <div class="alert-success">
+                        <b>Great,</b>Data Upload Successful! View your Reports in two days.
+                    </div>
+                    {% endif %}
+
+                    {% if user_not_registered %}
+                    <div class="alert-warning">
+                        <b>Alert : </b>Please <a href="{{ url_for('customer_registration_page') }}">register</a> first to upload data.
+                    </div>
+                    {% endif %}
 
                     <form class="contact-us-form" action="/submit" method="post" autocomplete="off">
                         <h3 class="contactus-title">Upload Data</h3>
@@ -110,7 +121,27 @@
         </div>
     </div>
     <!-- <script src="https://kit.fontawesome.com/64d58efce2.js"></script> -->
+    
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+
+    <!-- <script>
+        // Check JavaScript variable to display pop-up messages
+        if ({ upload_success }) {
+            // Display a "Data Upload Successful" pop-up message if the upload was successful
+            alert("Data Upload Successful!");
+        }
+
+        if (!{ upload_success }) {
+            // Display a "Data Upload Successful" pop-up message if the upload was successful
+            alert("Data Upload Unsuccessful!");
+        }
+
+        if ({ user_not_registered }) {
+            // Display a "Please register first to upload data" pop-up message if the user is not registered
+            alert("Please register first to upload data.");
+            // You can optionally redirect to the registration page here
+        }
+    </script> -->
 </body>
 
 </html>
